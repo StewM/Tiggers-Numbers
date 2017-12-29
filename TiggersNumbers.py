@@ -1,11 +1,11 @@
 import os
 from os.path import join, dirname
 import tweepy
-from random import *
 from dotenv import load_dotenv
 import discord
 import asyncio
-import datetime
+from datetime import date, datetime
+from modules import db
 
 # initialize Discord Client
 client = discord.Client()
@@ -28,23 +28,9 @@ auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
 api = tweepy.API(auth)
 
 # get numbers
-num1 = randint(1, 99)
-num2 = randint(1, 99)
-
-# ensure they're not the same number
-while num1 == num2:
-	num2 = randint(1, 99)
-
-# format the numbers into strings
-if(num1 < 10):
-	num1string = "0" + str(num1)
-else:
-	num1string = str(num1)
-
-if(num2 < 10):
-        num2string = "0" + str(num2)
-else:
-        num2string = str(num2)
+numbers = db.get_numbers(datetime.now().replace(hour=0, minute=0, second=0, microsecond=0))
+num1string = numbers[0][1]
+num2string = numbers[0][2]
 
 # write message
 message = "Today's numbers are " + num1string + " and " + num2string
