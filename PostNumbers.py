@@ -38,7 +38,7 @@ num2string = numbers[0][2]
 message = "Today's numbers are " + num1string + " and " + num2string
 
 # send tweet
-#api.update_status(message)
+api.update_status(message)
 
 # define discord function
 @client.event
