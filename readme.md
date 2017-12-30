@@ -1,6 +1,6 @@
 # Tigger's Numbers
 
-Tigger's numbers is a fun joke thought up by John Michonski and the other great people over at Video Game Choo Choo.
+Tigger's numbers is a fun joke thought up by [John Michonski](https://twitter.com/john_michonski) and the other great people over at [Video Game Choo Choo](http://videogamechoochoo.com/). Come hang out with us in discord at [thegamezone.zone](http://thegamezone.zone).
 
 I decided to follow through the joke with a twitter account and discord bot, and have been fleshing it out for fun. Tigger will post his numbers every day at noon UTC.
 
