@@ -1,4 +1,4 @@
-import os
+import os, sys
 from os.path import join, dirname
 import tweepy
 from dotenv import load_dotenv
@@ -29,6 +29,9 @@ api = tweepy.API(auth)
 
 # get numbers
 numbers = db.get_numbers(datetime.now().replace(hour=0, minute=0, second=0, microsecond=0))
+if(len(numbers) == 0):
+    sys.exit()
+
 num1string = numbers[0][1]
 num2string = numbers[0][2]
 
