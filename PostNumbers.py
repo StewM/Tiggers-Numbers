@@ -19,7 +19,6 @@ CONSUMER_KEY = os.environ.get('CONSUMER_KEY')
 CONSUMER_SECRET = os.environ.get('CONSUMER_SECRET')
 ACCESS_KEY = os.environ.get('ACCESS_KEY')
 ACCESS_SECRET = os.environ.get('ACCESS_SECRET')
-CHANNEL_ID = os.environ.get('CHANNEL_ID')
 DISCORD_KEY = os.environ.get('DISCORD_KEY')
 
 # initialize Twitter Client
@@ -39,13 +38,23 @@ num2string = numbers[0][2]
 message = "Today's numbers are " + num1string + " and " + num2string
 
 # send tweet
-api.update_status(message)
+#api.update_status(message)
 
 # define discord function
 @client.event
 async def on_ready():
-  await client.send_message(client.get_channel(CHANNEL_ID), message)
-  await client.close()
+    # get all channels
+    channels = db.get_channels()
+    if(len(channels) > 0):
+        # loop through and send message to each channel
+        for channel in channels:
+            try:
+                await client.send_message(client.get_channel(channel[0]), message)
+            # if exception, remove channel from table
+            except(discord.errors.InvalidArgument) as e:
+                db.delete_channel(channel[0])
+                print("Deleted invalid channel with ID " + channel[0])
+    await client.close()
 
 # run discord function
 client.run(DISCORD_KEY)
