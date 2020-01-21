@@ -11,7 +11,7 @@ def Generate():
 	num2 = randint(1, 99)
 
 	# ensure they're not the same number
-	while num1 == num2:
+	while (num1 == num2) or (num1 == 14 and num2 == 88) or (num1 == 88 and num2 == 14):
 	    num2 = randint(1, 99)
 
 	# format the numbers into strings
